@@ -1,27 +1,30 @@
-function showSlide(slideId) {
-    document.querySelectorAll('.slide').forEach(slide => {
-        slide.classList.add('hidden');
-    });
-    document.getElementById(slideId).classList.remove('hidden');
+let currentSlide = 1;
+const totalSlides = 6;
+
+function showSlide(slideNumber) {
+  document.querySelectorAll('.slide').forEach(slide => {
+    slide.classList.remove('active');
+  });
+  document.getElementById(`slide${slideNumber}`).classList.add('active');
 }
 
-function yesClicked() {
-    showSlide('slideYes');
-}
-
-function noClicked() {
-    showSlide('slideNo');
-}
-
-function splitCake() {
-    const cake = document.getElementById('cake');
-    cake.style.transform = 'rotate(-30deg) translateX(50px)';
-}
-
-function restart() {
-    window.location.reload();
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    showSlide('slide1');
+document.getElementById('yesBtn').addEventListener('click', () => {
+  currentSlide = 4;
+  showSlide(currentSlide);
 });
+
+document.getElementById('noBtn').addEventListener('click', () => {
+  currentSlide = 3;
+  showSlide(currentSlide);
+});
+
+document.getElementById('clickHereBtn').addEventListener('click', () => {
+  currentSlide = 5;
+  showSlide(currentSlide);
+});
+
+// Automatically move to the next slide after a delay
+setInterval(() => {
+  currentSlide = (currentSlide % totalSlides) + 1;
+  showSlide(currentSlide);
+}, 5000); // Change slide every 5 seconds
