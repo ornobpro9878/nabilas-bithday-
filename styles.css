@@ -1,92 +1,169 @@
-/* General Styles */
 body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(to bottom, #fff8e1, #ffe4c4);
-    overflow: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to bottom, #ffcccb, #ffebcd);
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.background {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+.container {
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
 .slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    opacity: 1;
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
-.hidden {
-    opacity: 0;
-    pointer-events: none;
-    transform: scale(0.95);
+.slide.active {
+  display: flex;
+}
+
+.box {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.hearts {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.heart {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #ff6b6b;
+  clip-path: polygon(50% 0%, 100% 35%, 82% 100%, 50% 80%, 18% 100%, 0% 35%);
+  animation: float 5s infinite ease-in-out;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 .star {
-    font-size: 5rem;
-    color: gold;
-    margin-bottom: 20px;
-    animation: sparkle 2s infinite;
+  font-size: 2rem;
+  margin-top: 10px;
 }
 
-@keyframes sparkle {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
+.buttons {
+  margin-top: 20px;
 }
 
-.title, .message, .final-message {
-    font-size: 2rem;
-    color: #ff6f61;
+button {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  background: #ff6b6b;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
 }
 
-.button {
-    background: #ff6f61;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    margin: 10px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background 0.3s;
+button:hover {
+  background: #ff4c4c;
 }
 
-.button:hover {
-    background: #ff3b2f;
+.party {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-/* Floating Balloons */
-.floating-balloons {
-    width: 100%;
-    height: 100%;
-    background: url('balloons.png') no-repeat center center;
-    background-size: cover;
-    animation: floatBalloons 5s infinite;
+.particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, transparent 20%, #ffcccb 20%, #ffcccb 80%, transparent 80%, transparent);
+  background-size: 50px 50px;
+  animation: particles 2s linear infinite;
 }
 
-@keyframes floatBalloons {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0); }
+@keyframes particles {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
 }
 
-/* Cake Animation */
+.balloons {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50%;
+}
+
+.balloon {
+  position: absolute;
+  width: 50px;
+  height: 70px;
+  background: #ff6b6b;
+  border-radius: 50%;
+  animation: floatBalloon 5s infinite ease-in-out;
+}
+
+@keyframes floatBalloon {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-100px);
+  }
+}
+
 .cake {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    background: #ffcccb;
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin: 20px auto;
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+}
+
+.layer {
+  width: 100%;
+  height: 50%;
+  background: #f4a460;
+  border-radius: 10px;
+}
+
+.layer.top {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.layer.bottom {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
